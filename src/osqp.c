@@ -71,7 +71,7 @@ void osqp_set_default_settings(OSQPSettings *settings) {
 #ifndef EMBEDDED
 
 
-OSQPWorkspace* osqp_setup(const OSQPData *data, OSQPSettings *settings) {
+OSQPWorkspace* osqp_setup(const OSQPData *data, const OSQPSettings *settings) {
   OSQPWorkspace *work; // Workspace
 
   // Validate data

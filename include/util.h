@@ -30,7 +30,7 @@ const char* osqp_version(void);
  * @param  settings Settings to be copied
  * @return          New settings structure
  */
-OSQPSettings* copy_settings(OSQPSettings *settings);
+OSQPSettings* copy_settings(const OSQPSettings *settings);
 
 # endif // #ifndef EMBEDDED
 

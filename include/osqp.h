@@ -55,7 +55,7 @@ void osqp_set_default_settings(OSQPSettings *settings);
  * @return              Solver environment
  */
 OSQPWorkspace* osqp_setup(const OSQPData *data,
-                          OSQPSettings   *settings);
+                          const OSQPSettings   *settings);
 
 # endif // #ifndef EMBEDDED
 
