@@ -272,7 +272,7 @@ namespace casadi {
     }
 
     // Solve Problem
-    c_float rho_old = m->work->settings->rho;
+    c_float rho_old = m->work->settings->rho; // https://github.com/oxfordcontrol/osqp/issues/235
     ret = osqp_solve(m->work);
     casadi_assert(ret==0, "Problem in osqp_solve");
     osqp_update_rho(m->work, rho_old);  // Recover rho to the original one.
