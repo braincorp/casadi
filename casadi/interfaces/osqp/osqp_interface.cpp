@@ -257,6 +257,9 @@ namespace casadi {
     if (warm_start_primal_) {
       ret = osqp_warm_start_x(m->work, arg[CONIC_X0]);
       casadi_assert(ret==0, "Problem in osqp_warm_start_x");
+    } else {
+      vec_set_scalar(m->work->x, 0., m->work->data->n);
+      vec_set_scalar(m->work->z, 0., m->work->data->m);
     }
 
     if (warm_start_dual_) {
@@ -264,11 +267,15 @@ namespace casadi {
       casadi_copy(arg[CONIC_LAM_A0], na_, w+nx_);
       ret = osqp_warm_start_y(m->work, w);
       casadi_assert(ret==0, "Problem in osqp_warm_start_y");
+    } else {
+        vec_set_scalar(m->work->y, 0., m->work->data->m);
     }
 
     // Solve Problem
+    c_float rho_old = m->work->settings->rho;
     ret = osqp_solve(m->work);
     casadi_assert(ret==0, "Problem in osqp_solve");
+    osqp_update_rho(m->work, rho_old);  // Recover rho to the original one.
 
     casadi_copy(m->work->solution->x, nx_, res[CONIC_X]);
     casadi_copy(m->work->solution->y, nx_, res[CONIC_LAM_X]);
