@@ -213,6 +213,8 @@ endif()
 ################# WITH_COMMON option #######################
 ############################################################
 option(WITH_COMMON "Build common, stable interfaces, if found" OFF)
+# Optionally search for ipopt
+option(WITH_IPOPT "Build with ipopt, if found" OFF)
 if(WITH_COMMON)
   # Look for LAPACK
   find_package(LAPACK QUIET)
@@ -222,8 +224,10 @@ if(WITH_COMMON)
   set(WITH_BLOCKSQP_DEF ${LAPACK_FOUND})
   set(WITH_SUPERSCS_DEF ${LAPACK_FOUND})
   # Look for IPOPT
-  find_package(IPOPT QUIET)
-  set(WITH_IPOPT_DEF ${IPOPT_FOUND})
+  if(WITH_IPOPT)
+    find_package(IPOPT QUIET)
+    set(WITH_IPOPT_DEF ${IPOPT_FOUND})
+  endif()
 else()
   # Disabled by default
   set(WITH_LAPACK_DEF OFF)
@@ -862,7 +866,7 @@ export(TARGETS casadi
 
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)
-export(PACKAGE CasADi)
+#export(PACKAGE CasADi)
 
 # Create casadi-config.cmake
 file(RELATIVE_PATH REL_LIB_PREFIX "${CMAKE_PREFIX}" "${LIB_PREFIX}")
