@@ -864,10 +864,6 @@ endif()
 export(TARGETS casadi
   FILE "${PROJECT_BINARY_DIR}/casadi-targets.cmake")
 
-# Export the package for use from the build-tree
-# (this registers the build-tree with a global CMake-registry)
-#export(PACKAGE CasADi)
-
 # Create casadi-config.cmake
 file(RELATIVE_PATH REL_LIB_PREFIX "${CMAKE_PREFIX}" "${LIB_PREFIX}")
 # ... for the build tree
