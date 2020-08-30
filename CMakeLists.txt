@@ -606,11 +606,12 @@ add_feature_info(dsdp-interface WITH_DSDP "Interface to the interior point SDP s
 
 # CLANG: A just-in-time compiler
 option(OLD_LLVM "Use pre-3.5 LLVM" OFF)
-option(WITH_CLANG "Compile the interface to clang JIT" OFF)
+option(WITH_CLANG "Compile the interface to clang JIT" ON)
 if(WITH_CLANG)
   # try to find system CLANG
   find_package(CLANG REQUIRED)
 endif()
+
 add_feature_info(clang-interface WITH_CLANG "Interface to the Clang JIT compiler.")
 
 # Lapack: Dense linear solvers

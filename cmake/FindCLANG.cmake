@@ -34,6 +34,7 @@ set(CLANG_CXX_FLAGS)
 
 # most recent versions come first: http://llvm.org/apt/
 set(CLANG_KNOWN_LLVM_VERSIONS 4.0.1 4.0.0
+  3.9
   3.7.0 3.7
   3.6.2 3.6.1 3.6.0 3.6
   3.5.2 3.5.1 3.5.0 3.5
@@ -53,7 +54,7 @@ foreach (version ${CLANG_KNOWN_LLVM_VERSIONS})
     set(llvm_hints ${llvm_hints} "/opt/local/libexec/llvm-${version}/bin")
   elseif(UNIX)
     # FreeBSD ports versions
-    set(llvm_hints ${llvm_hints} "/usr/local/llvm${undotted_version}/bin")
+    set(llvm_hints ${llvm_hints} "/usr/lib/llvm-${version}/bin")
   endif()
 endforeach()
 
